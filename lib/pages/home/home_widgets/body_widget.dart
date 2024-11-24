@@ -132,14 +132,14 @@ class _BodyWidgetState extends State<BodyWidget> {
             title: 'Fox',
             onPressed: () => showSnackBar(context, 'Fox Pressed!'),
           ),
-          // AnswerItemModel(
-          //   title: 'Prey',
-          //   onPressed: () => showSnackBar(context, 'Prey Pressed!'),
-          // ),
-          // AnswerItemModel(
-          //   title: 'Wolf',
-          //   onPressed: () => showSnackBar(context, 'Wolf Pressed!'),
-          // ),
+          AnswerItemModel(
+            title: 'Prey',
+            onPressed: () => showSnackBar(context, 'Prey Pressed!'),
+          ),
+          AnswerItemModel(
+            title: 'Wolf',
+            onPressed: () => showSnackBar(context, 'Wolf Pressed!'),
+          ),
         ],
       ),
     ];
@@ -187,20 +187,23 @@ class _BodyWidgetState extends State<BodyWidget> {
                     isDarkMode: widget.isDarkMode,
                   ),
                   const SizedBox(height: 30),
-                  Column(
-                      children: List.generate(
-                    questions[questionIndex].availableAnswers.length,
-                    (index) => AnswerItem(
-                      answerMap:
-                          questions[questionIndex].availableAnswers[index],
-                      isAnswerChosen: answerChosen == index,
-                      questionIndexChangeCallback: () {
-                        setState(() {
-                          answerChosen = index;
-                        });
+                  SizedBox(
+                    height: 300, // Adjust the height to fit the available space
+                    child: ListView.builder(
+                      itemCount: questions[questionIndex].availableAnswers.length,
+                      itemBuilder: (context, index) {
+                        return AnswerItem(
+                          answerMap: questions[questionIndex].availableAnswers[index],
+                          isAnswerChosen: answerChosen == index,
+                          questionIndexChangeCallback: () {
+                            setState(() {
+                              answerChosen = index;
+                            });
+                          },
+                        );
                       },
                     ),
-                  )),
+                  ),
                   const Spacer(),
                   SizedBox(
                     height: 60,
