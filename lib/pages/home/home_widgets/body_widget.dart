@@ -174,8 +174,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                         },
                         child: Icon(
                           widget.isDarkMode
-                              ? Icons.nightlight_round
-                              : Icons.wb_sunny,
+                              ? Icons.wb_sunny
+                              : Icons.nightlight_round,
                           size: 30,
                         ),
                       ),
